@@ -1,0 +1,50 @@
+Design Critique:
+Overall we think the design of the provider's code was well done.
+It's similar to ours so we may have a bias. The idea of storing the data as a simple
+Transformation class allowed flexibility and easy implementation. There is one issue with time which
+was a flaw on our design as well. The time should actually be handled by the controller. If there
+were multiple views running at the same time and each handled time independently, they would easily
+fall out of sync.
+Having an extended interface to make the Animation windowed was also
+straightforward.
+
+Implementation Critique:
+We think there were a good number of cases of tight coupling. One concrete example would be the fact
+that the Editor View has a fields to store one a list of transformations. This tightly couples the
+view to the implementation in the model. It may be useful to store this differently or implement
+a dummy class that's solely meant to carry data between the view and model (we heard this was a
+recommendation made to some people by TAs when refactoring).
+
+Additionaly, we think the transformations aren't immutable,
+so depending on the implementation this list could be a
+reference to the model's data. We would recommend making a read only transformation class.
+Another case would be the use of the ActionListener
+and KeyListener interfaces. If the controller implements these interfaces it ends up tightly
+coupling the controller to Swing specific implementation and makes it unflexible for other GUIs. It
+would probably be best to create a Listener interface(s) and when setting the listeners through
+methods adapt it to the GUI's listeners. Other than that we think the code was well implemented.
+There were very few cases of duplicate code and methods had clear defined purposes.
+
+Documentation Critique:
+Overall the code was well documented. The names of classes, methods and features were
+straightforward. There were few times we were confused on what code did or what purpose a class or
+method served. Even when we needed some clearing up our providers were incredibly responsive and
+helpful, which we appreciate a lot.
+
+Design/code limitations:
+We would recommend focusing on the coupling between interfaces. The view shouldn't know that the
+model stores data through Transformations. Maybe a list of values or varargs could be an alternative.
+
+We would recommend moving the interpolating logic from inside the view to the model.
+Specifically in the drawShape function where it finds the shape's intermediate properties at the
+tick. This puts more work on the model, but the view's job should just be to render the data given.
+The model should handle that sort of complex logic.
+The capability of the views were good. Although being able to see the available keyframes of
+each shape would be useful to implement. Overall, the usability was good. We thought the pop up
+box for adding shape was useful.
+
+Refactoring Requests made:
+Removing the TransformationVisitor.
+Removing ModifyShape.
+Removing a SVG view specific method.
+

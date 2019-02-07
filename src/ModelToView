@@ -1,0 +1,37 @@
+View shouldn't mutate the Model
+- Only give primitives
+- Make a copy
+- Refine the types -> No setters
+- Wrap it w/ errors
+
+Refine the types : Immutable vs General
+- Immutable contains the observers
+- General has mutators and extends Immutable
+- up/down casting
+- is brittle ex. instance of/casting can break this
+
+Wrap it: Composition
+- observe only implements and contains the general
+- throws errors for methods that would mutate
+- we have methods we can see, but can't use...
+- Membrane: phobic vs philic side --> for deep wrapping, items within are immutable too
+ *equality + extension + mutability deeply tied
+
+Costs:
+Make a Copy
+    - memory extensive... copy the object and all its pointers
+    - these copies are short lived...
+Refine
+    - little cost
+Wrap it
+    - doubles time: extra field and extra method call per method
+
+View and Model
+- view gets a misdirection of the model
+- we don't have the true name of the model, can't use its full extent
+- Attenuation: we're not even giving the view the full interface of the model
+- Debugging is simpler: is it the right data in the model? Is the data being sent accurately?
+
+
+
+

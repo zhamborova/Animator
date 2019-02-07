@@ -1,0 +1,36 @@
+After sharing and receiving code, we realized there was a lot of tight coupling in our code.
+Before this assignment we actually thought our code had little dependency with each other, but this
+was a good wake up call and good experience on the fact that we need a little more foresight.
+
+Another irk is, overall we think our code is decently future proof and extendable. However, we do
+have a good number of unsupported function exceptions. We wish we could've figured out a better work
+around.
+
+I think this is generally the same lesson we got out of our provider's code. It's harder than we
+thought to realize implementation leaking. When we received someone else's code it's much more
+obvious where implementations or interfaces are tightly coupled when they shouldn't be. When we're
+writing our own code though I feel like it's harder to realize this because we're thinking about our
+code in general, and less as defined interactions between interfaces. I think a lot of these issues
+in the provider's code were similar issues we had in ours, so it was definitely a good reference
+to build off on.
+
+One specific issue we had was because of the tight coupling it made it difficult for us to adapt
+properly.
+Since we have to convert our Shapes to Transformations the list of Transformations the view has
+aren't references to the model. In order to update the model we have to call the accept methods
+after every change. In order to do this our view interface had to promise this functionality. In
+other words because the provider's views and Model implementation are tightly coupled our view
+had to end up tightly coupled as well.
+
+We should've asked our provider's to refactor this issue, but we realized we didn't have a way to
+work around this until too late into the assignment. Our implementations were mostly similar
+so we thought keeping this issue would be good practice on adapting code.
+We tried adding the method but with our
+implementation, in other words a method that returns a List<Shape> instead of a List<Transformation>.
+Then the adapter would handle the converting from Shape -> Transformation.
+This still tightly coupled our view to our
+model implementation, but was better than coupling to the provider's. Instead of adding the methods
+to our view we also tried making a decorator instead or extending our interface.
+At some point all of these attempts fail because the coupling is too tight.
+Our experience with our providers were good. They were incredibly responsive, willing to help
+and quick refactor their code.

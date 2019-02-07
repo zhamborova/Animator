@@ -1,0 +1,78 @@
+Callbacks
+-critical to loose coupling
+-ex. the objects that care about an motion are a listener
+-    the motion calls back to those objects some useful information about the motion
+
+What events matter?
+- high level: do I care about what triggered the motion...or what the motion logically is
+- view translates low level trigger --> turn it into a higher level motion
+- controller reacts to the conceptual/logic of the motion
+
+Logical Interfaces
+- what can you ask me?
+- what can I tell you?
+- communication goes both ways
+
+Listeners
+- a call back that informs of an motion
+- High level Listener, low level action listener
+- have a translator that extracts the high level information and gives it to the listener
+- loosely couples the controller and view
+- multiple triggers for the same higher level motion
+- view calls listener, and the listener is actually a controller
+- controller gets a listener in the constructor
+- view don't know about model...view can't change the model
+- the controller can, but view can't
+- model: mutable
+- view: independent of model
+- controller: works between the two
+
+ex. toggleColor() only works for toggling colors...its purpose is to change the color
+- hard codes a specific implementation
+
+- do nothing vs. blow up vs. awkwardly make more classes
+- take a step back...purpose statement
+- what's the intent rather than implementation? Is there a more broad/general goal?
+
+ex. key motion: Press, Hold, Release
+
+- change: get the data, process it and tell the view to show the changes
+- undo change: get the data, process it, show it unchanged in the view
+- we're not changing the data in the model, just how its shown in the view
+- data in the view is a function/derived of the data in the model
+
+Where do we draw the line? changing vs not changing in the model
+
+- parser: acts as a factory for our model if we pass it a builder of our model
+- builder is the intermediate between the what the model is vs what the assumptions of the model are
+
+Multiple Listeners
+- as many as I need for given events
+- useful implications for auditing, debugging
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+
+
+Mocks
+    test that the right listener is called
+    test that the right action is observered in the model after its called
+
+shape
+    modifying and updating shape methods
+
+what to do about irrelevant methods?
+
